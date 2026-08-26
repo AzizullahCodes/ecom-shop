@@ -1,11 +1,13 @@
 //AddProducts.jsx 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const AddProducts = () => {
     const [productName,setProductName] = useState('');
     const [productImage,setProductImage] = useState('');
     const [productDescription,setProductDescription] = useState('');
     const [productPrice,setProductPrice] = useState('');
+    //use state for gettitng products handling from localstorage 
+    const [getProducts,setGetProducts] = useState([]);
 
     //addProductsHandler 
     const addProductsHandler = ()=>{
@@ -14,6 +16,22 @@ const AddProducts = () => {
         console.log(productDescription);
         console.log(productPrice)
     }
+
+    //
+    useEffect(()=>{
+    let raw = localStorage.getItem('productList');
+    if(raw){
+        console.log('product list already exist in local storage');
+        let jsonData = JSON.parse(raw);
+        console.log(jsonData)
+    }
+    else{
+        console.log('product list is not exist in localstorage')
+        localStorage.setItem('productList',JSON.stringify([]))
+        console.log('productList is created successfully in localstorage')
+    }
+
+    },[])
   return (
    <div>
     <h1>Add Products Page</h1>
