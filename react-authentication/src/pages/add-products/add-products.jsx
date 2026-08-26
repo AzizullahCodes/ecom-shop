@@ -11,10 +11,31 @@ const AddProducts = () => {
 
     //addProductsHandler 
     const addProductsHandler = ()=>{
-        console.log(productName);
-        console.log(productImage)
-        console.log(productDescription);
-        console.log(productPrice)
+        
+        let obj = {
+            productName,
+            productImage,
+            productDescription,
+            productPrice
+        }
+        
+        //clone already existing products
+        let exitingProducts = [...getProducts];
+        console.log(exitingProducts)
+
+        //push new product to clone
+        exitingProducts.push(obj)
+        console.log(exitingProducts)
+
+        // update getProducts useState
+        setGetProducts(exitingProducts);
+        console.log(getProducts)
+
+        // we update local storage 
+        localStorage.setItem('productList',JSON.stringify(exitingProducts))
+        console.log('getProduct is ', exitingProducts)
+
+    
     }
 
     //
@@ -24,6 +45,7 @@ const AddProducts = () => {
         console.log('product list already exist in local storage');
         let jsonData = JSON.parse(raw);
         console.log(jsonData)
+        setGetProducts(jsonData)
     }
     else{
         console.log('product list is not exist in localstorage')
