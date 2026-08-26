@@ -9,7 +9,7 @@ import Home from "../../pages/home/home";
 import About from "../../pages/about/about";
 import Contact from "../../pages/contact/contact";
 import YourCart from "../../pages/cart/cart";
-
+import AddProducts from "../../pages/add-products/add-products";
 // Route Guards
 import PublicRoutes from "../public-routes/public-routes";
 import ProtectedRoutes from "../protected-routes/protected-routes";
@@ -34,6 +34,7 @@ const AppRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<YourCart/>}/>
+        <Route path="/add-products" element={<AddProducts/>}/>
      
       </Route>
 
