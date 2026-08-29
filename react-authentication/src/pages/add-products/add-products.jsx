@@ -35,6 +35,12 @@ const AddProducts = () => {
         localStorage.setItem('productList',JSON.stringify(exitingProducts))
         console.log('getProduct is ', exitingProducts)
 
+        //clear states 
+        setProductName('');
+        setProductImage('');
+        setProductDescription('');
+        setProductPrice('')
+
     
     }
 

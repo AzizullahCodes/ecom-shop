@@ -84,6 +84,10 @@ const Navbar = () => {
             <Link to="/sign-up" className="signup-btn">
               Sign Up
             </Link>
+
+             <Link to="/setting" className="signup-btn">
+              setting
+            </Link>
           </div>
         </ul>
 

@@ -10,6 +10,7 @@ import About from "../../pages/about/about";
 import Contact from "../../pages/contact/contact";
 import YourCart from "../../pages/cart/cart";
 import AddProducts from "../../pages/add-products/add-products";
+import SettingPage from "../../pages/setting/setting";
 // Route Guards
 import PublicRoutes from "../public-routes/public-routes";
 import ProtectedRoutes from "../protected-routes/protected-routes";
@@ -35,6 +36,7 @@ const AppRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/cart" element={<YourCart/>}/>
         <Route path="/add-products" element={<AddProducts/>}/>
+        <Route path="/setting" element={<SettingPage/>}/>
      
       </Route>
 

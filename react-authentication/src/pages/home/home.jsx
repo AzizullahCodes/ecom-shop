@@ -1,63 +1,36 @@
-import React from "react";
-import Swal from 'sweetalert2'; 
-import './home.css';
-import { useNavigate } from "react-router-dom";
-const Home = ()=>{
-  const navigate = useNavigate('')
-  const logOutHandler = ()=>{
-  localStorage.removeItem('loggedInUser')
-  //swal alert
-   Swal.fire({
-        title: 'You have logged out successfully!',
-        icon: 'success',
-        draggable: true,
+import React, { useEffect, useState } from 'react'
+
+const Home = () => {
+  const [fetchProducts,setFetchProducts] = useState([]);
+
+  useEffect(()=>{
+    let get = localStorage.getItem('productList');
+    if(get){
+      let jsonData = JSON.parse(get);
+      // console.log(jsonData)
+      jsonData && setFetchProducts(jsonData)
+    }
+
+  },[])
+  console.log(fetchProducts)
+  return (
+    <div>
+      <h1>Products screen</h1>
+    
+        {
+          fetchProducts?.map((product,index)=>{
+            return  <li>
+    {/* <img src={product.productImage} alt={product.productName} /> */}
+    <img src={product.productImage} alt={product.productImage} />
+    <h3>{product.productName}</h3>
+    <p>{product.productDescription}</p>
+    <p>{product.productPrice}</p>
+  </li>
+          })
+        }
       
-       
-      }).then(()=>{
-        navigate('/login')
-      })
- 
-  }
-  //delete account 
-  const deleteAccountFun = ()=>{
-    let users = JSON.parse(localStorage.getItem('users'));
-  let loggedUser = JSON.parse(localStorage.getItem('loggedInUser'));
-  console.log(loggedUser)
-  console.log(users);
-  let requiredIndex = users?.findIndex((item)=> item.email == loggedUser.email);
-  console.log(requiredIndex)
-  users.splice(requiredIndex,1);
-  localStorage.setItem('users',JSON.stringify(users))
-  localStorage.removeItem('loggedInUser')
-  //swal alert
-   Swal.fire({
-        title: 'Your account has been deleted permanently!',
-        icon: 'error',
-        draggable: true,
-      }).then(()=>{
-        navigate('/login')
-      })
- 
-  }
-  return(
-    <div className="home-container">
-      <div className="home-card">
-        <h1 className="home-heading">Welcome Home</h1>
-        <p className="home-subtext">Manage your account settings below</p>
-        
-        <div className="button-group">
-          <button className="btn-logout" onClick={logOutHandler}>
-            Log Out
-          </button>
-          
-          <button className="btn-delete" onClick={deleteAccountFun}>
-            Delete Account
-          </button>
-        </div>
-      </div>
     </div>
   )
 }
-export default Home;
 
-
+export default Home
