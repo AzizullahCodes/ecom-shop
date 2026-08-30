@@ -12,6 +12,7 @@ import {
   MDBCol
 } from 'mdb-react-ui-kit';
 import { use } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [fetchProducts, setFetchProducts] = useState([]);
@@ -19,6 +20,8 @@ const Home = () => {
   const [authUser,setAuthUser] = useState(null)
   //use state for orders handling 
   const [bucket,setBucket] = useState([])
+  //useNavigat state
+  const naviagtion = useNavigate('');
   //funtion for addItemToShoppingCart
   const addItemToShoppingCart = (product)=>{
   
@@ -65,7 +68,13 @@ const Home = () => {
       }
     }
   }, []);
-  // console.log('auth user is...', authUser)
+
+  //procedd to add to cart function 
+  const proceedToCart = ()=>{
+    // console.log(bucket)
+    localStorage.setItem('YourOrders',JSON.stringify(bucket))
+    // naviagtion('/cart') 
+  }
   return (
     <div>
       <h1>Products screen</h1>
@@ -102,7 +111,13 @@ const Home = () => {
       ) : (
         <h1>No product found</h1>
       )}
+      {/* button for proceed */}
+       <div className="d-grid gap-2 col-6 mx-auto">
+      <MDBBtn onClick={proceedToCart}>Proceed</MDBBtn>
+      
     </div>
+    </div>
+    
   );
 };
 
