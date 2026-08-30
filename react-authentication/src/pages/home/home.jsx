@@ -27,11 +27,24 @@ const Home = () => {
    }
    else{
      console.log(product)
+     //validation part 
+      let checking = bucket.some((item)=>{
+        return item.productId == product.productId
+      })
+      console.log(checking)
+     //validation part end
      let bucketClone = [...bucket];
-     console.log(bucketClone)
+     if(checking){
+      alert(`This product  is already added in cart`)
+      
+     }
+    
+     else {
+      //  console.log(bucketClone)
      bucketClone.push(product);
-     console.log('updated bucket is....', bucketClone)
+    //  console.log('updated bucket is....', bucketClone)
      setBucket(bucketClone);
+     }
      
    }
   }
