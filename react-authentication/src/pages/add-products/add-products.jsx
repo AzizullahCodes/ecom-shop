@@ -13,6 +13,7 @@ const AddProducts = () => {
     const addProductsHandler = ()=>{
         
         let obj = {
+            productId : Date.now().toString(),
             productName,
             productImage,
             productDescription,
