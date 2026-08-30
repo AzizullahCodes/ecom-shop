@@ -17,10 +17,25 @@ const Home = () => {
   const [fetchProducts, setFetchProducts] = useState([]);
   //fetch loggedInUser from local storage 
   const [authUser,setAuthUser] = useState(null)
+  //use state for orders handling 
+  const [bucket,setBucket] = useState([])
   //funtion for addItemToShoppingCart
   const addItemToShoppingCart = (product)=>{
-   console.log(product)
+  
+   if(!authUser){
+    alert('You are not authenticated \n plz login first')
+   }
+   else{
+     console.log(product)
+     let bucketClone = [...bucket];
+     console.log(bucketClone)
+     bucketClone.push(product);
+     console.log('updated bucket is....', bucketClone)
+     setBucket(bucketClone);
+     
+   }
   }
+  console.log('final bucket is ....', bucket)
 
   useEffect(() => {
     let get = localStorage.getItem('productList');
@@ -37,7 +52,7 @@ const Home = () => {
       }
     }
   }, []);
-  console.log('auth user is...', authUser)
+  // console.log('auth user is...', authUser)
   return (
     <div>
       <h1>Products screen</h1>
