@@ -13,6 +13,7 @@ import {
 const YourCart = () => {
   
   const [currentOrders,setCurrentOrders] = useState([])
+  const [price,setPrice] = useState(0)
 
   //useEffect 
   useEffect(()=>{
@@ -50,7 +51,29 @@ setCurrentOrders(allOrders)
 //set database in localstorage also 
 localStorage.setItem('YourOrders',JSON.stringify(allOrders))
 }
-console.log('remaing orders are...',currentOrders)
+
+//total price calculating function 
+
+const totalPrice = (currentOrders)=>{
+  let arr = []
+  for(let i = 0;i < currentOrders.length;i++){
+    // let a = Number(currentOrders[i].productPrice)
+    // // console.log(currentOrders[i].productPrice)
+    // console.log(a)
+    // arr.push(a)
+    arr.push(Number(currentOrders[i].productPrice))
+  }
+  console.log(arr)
+  let requiredArray = [...arr]
+  console.log('required array....',requiredArray)
+  let tot = requiredArray.reduce((prev,next)=>{
+    return prev + next
+  },0)
+  console.log(tot)
+  tot && setPrice(tot)
+}
+
+console.log('price in state is ......', price)
   return (
    <div>
          <h1>Orders screen</h1>
@@ -78,6 +101,7 @@ console.log('remaing orders are...',currentOrders)
                    <MDBCardBody>
                      <MDBCardTitle>{product.productName}</MDBCardTitle>
                      <MDBCardText>{product.productDescription}</MDBCardText>
+                     <MDBCardText> Price : {product.productPrice} PKR</MDBCardText>
                      <MDBBtn onClick={()=>deleteItem(product.productId
 )} >Delete Item</MDBBtn>
                    </MDBCardBody>
@@ -88,9 +112,13 @@ console.log('remaing orders are...',currentOrders)
          ) : (
            <h1>No product found</h1>
          )}
+         <hr/>
+         <div>
+          <h2>Total : {price} </h2>
+         </div>
          {/* button for proceed */}
           <div className="d-grid gap-2 col-6 mx-auto">
-         <MDBBtn >Proceed</MDBBtn>
+         <MDBBtn onClick={()=>totalPrice(currentOrders)} >Total</MDBBtn>
          
        </div>
        </div>
