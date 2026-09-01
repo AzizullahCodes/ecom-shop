@@ -38,15 +38,19 @@ const deleteItem = (deleteItemId)=>{
   //   needeItem = needeItem + allOrders[i].productId;
   
   // }
-  let filterIem = allOrders.filter((item)=>{
+  let findIndexNumber = allOrders.findIndex((item)=>{
     return item.productId === deleteItemId
-   
   })
-  console.log(filterIem)
-  console.log(`needeItem is ${needeItem}`)
-  console.log(deleteItemId)
-  console.log(currentOrders)
+  console.log(`index is ..... ${findIndexNumber}`)
+  
+  allOrders.splice(findIndexNumber,1)
+  // console.log('allorder after splicing.....',allOrders)
+setCurrentOrders(allOrders)
+  
+//set database in localstorage also 
+localStorage.setItem('YourOrders',JSON.stringify(allOrders))
 }
+console.log('remaing orders are...',currentOrders)
   return (
    <div>
          <h1>Orders screen</h1>
