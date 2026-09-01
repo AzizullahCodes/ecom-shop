@@ -27,6 +27,26 @@ const YourCart = () => {
     }
 
   },[])
+  
+//delete item function 
+const deleteItem = (deleteItemId)=>{
+  let allOrders = [...currentOrders]
+  console.log('allorders......',allOrders)
+  let needeItem = '';
+  // for(let i = 0;i < allOrders.length;i++){
+  //   console.log(allOrders[i].productId == deleteItemId)
+  //   needeItem = needeItem + allOrders[i].productId;
+  
+  // }
+  let filterIem = allOrders.filter((item)=>{
+    return item.productId === deleteItemId
+   
+  })
+  console.log(filterIem)
+  console.log(`needeItem is ${needeItem}`)
+  console.log(deleteItemId)
+  console.log(currentOrders)
+}
   return (
    <div>
          <h1>Orders screen</h1>
@@ -54,7 +74,8 @@ const YourCart = () => {
                    <MDBCardBody>
                      <MDBCardTitle>{product.productName}</MDBCardTitle>
                      <MDBCardText>{product.productDescription}</MDBCardText>
-                     <MDBBtn >Add to cart</MDBBtn>
+                     <MDBBtn onClick={()=>deleteItem(product.productId
+)} >Delete Item</MDBBtn>
                    </MDBCardBody>
                  </MDBCard>
                </MDBCol>
