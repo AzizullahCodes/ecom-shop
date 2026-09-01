@@ -57,10 +57,6 @@ localStorage.setItem('YourOrders',JSON.stringify(allOrders))
 const totalPrice = (currentOrders)=>{
   let arr = []
   for(let i = 0;i < currentOrders.length;i++){
-    // let a = Number(currentOrders[i].productPrice)
-    // // console.log(currentOrders[i].productPrice)
-    // console.log(a)
-    // arr.push(a)
     arr.push(Number(currentOrders[i].productPrice))
   }
   console.log(arr)
@@ -72,7 +68,16 @@ const totalPrice = (currentOrders)=>{
   console.log(tot)
   tot && setPrice(tot)
 }
+// increment decrement function for setting product quantity 
+//incrementQuantity Function 
+const increment = ()=>{
+  console.log('increment')
+}
 
+//decrementQuantity Function 
+const decrement = ()=>{
+  console.log('decrement')
+}
 console.log('price in state is ......', price)
   return (
    <div>
@@ -102,8 +107,10 @@ console.log('price in state is ......', price)
                      <MDBCardTitle>{product.productName}</MDBCardTitle>
                      <MDBCardText>{product.productDescription}</MDBCardText>
                      <MDBCardText> Price : {product.productPrice} PKR</MDBCardText>
-                     <MDBBtn onClick={()=>deleteItem(product.productId
-)} >Delete Item</MDBBtn>
+                    <MDBBtn onClick={increment}>+</MDBBtn>
+                     <MDBBtn onClick={decrement} >-</MDBBtn>
+                    <MDBCardText>Quantity : 0</MDBCardText>
+                     <MDBBtn onClick={()=>deleteItem(product.productId)} >Delete Item</MDBBtn>
                    </MDBCardBody>
                  </MDBCard>
                </MDBCol>
