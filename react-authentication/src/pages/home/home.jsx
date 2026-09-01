@@ -74,7 +74,13 @@ const Home = () => {
     // console.log(bucket)
     localStorage.setItem('YourOrders',JSON.stringify(bucket))
     // naviagtion('/cart') 
+    localStorage.setItem('YourOrders', JSON.stringify(bucket));
+  window.dispatchEvent(new Event('cartUpdated')); // 👈 notify Navbar
+  // naviagtion('/cart')
   }
+
+
+  
   return (
     <div>
       <h1>Products screen</h1>
